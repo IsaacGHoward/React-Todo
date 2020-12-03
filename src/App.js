@@ -13,16 +13,16 @@ class App extends React.Component {
     };
   }
   onType = (e) =>{
-    console.log(e.target.value);
     this.setState({newEntry : e.target.value});
   }
   addTodo(){
     console.log("added");
+    this.setState({todos: [...this.state.todos, {task: this.state.newEntry, id: Date.now(), completed: false}]})
   }
   render() {
     return (
       <div>
-        <TodoForm add={this.addTodo} type={this.onType}/>
+        <TodoForm add={this.addTodo.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
         <TodoList todos={this.state.todos}/>
       </div>
     );

@@ -12,6 +12,10 @@ class App extends React.Component {
       newEntry:''
     };
   }
+  keypress = (e) =>{
+    if(e.keyCode == 13)
+      this.addTodo();
+  }
   onType = (e) =>{
     this.setState({newEntry : e.target.value});
   }
@@ -38,7 +42,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TodoForm add={this.addTodo.bind(this)} remove={this.removeTodos.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
+        <TodoForm keypress={this.keypress.bind(this)} add={this.addTodo.bind(this)} remove={this.removeTodos.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
         <TodoList todos={this.state.todos} todoclicked={this.todoClicked.bind(this)}/>
       </div>
     );

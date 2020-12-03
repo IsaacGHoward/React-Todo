@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm'
 class App extends React.Component {
@@ -41,7 +42,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={'App-header'}>
         <TodoForm keypress={this.keypress.bind(this)} add={this.addTodo.bind(this)} remove={this.removeTodos.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
         <TodoList todos={this.state.todos} todoclicked={this.todoClicked.bind(this)}/>
       </div>

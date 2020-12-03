@@ -16,17 +16,19 @@ class App extends React.Component {
     this.setState({newEntry : e.target.value});
   }
   addTodo(){
-    console.log("added");
     this.setState({todos: [...this.state.todos, {task: this.state.newEntry, id: Date.now(), completed: false}]});
     this.setState({newEntry: ''});
   }
+  removeTodos(){
+    this.setState({todos: 
+      this.state.todos.filter(todo => !todo.completed)
+    })
+  }
   todoClicked(id){
-    console.log(id);
     let copy = this.state.todos;
     copy.map((todo) => {
       if(todo.id != id) return todo;
       else{
-        console.log(!todo.completed);
         todo.completed = !todo.completed;
         return todo;
       }
@@ -36,7 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TodoForm add={this.addTodo.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
+        <TodoForm add={this.addTodo.bind(this)} remove={this.removeTodos.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
         <TodoList todos={this.state.todos} todoclicked={this.todoClicked.bind(this)}/>
       </div>
     );

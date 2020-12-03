@@ -10,7 +10,7 @@ export default class TodoList extends Component{
     mapTodos = () => {
         return(
             this.props.todos.map((todo) => (
-                <Todo task={todo.task} id={todo.id} completed={todo.completed}/>
+                <Todo key={todo.id} task={todo.task} id={todo.id} completed={todo.completed} clicked={this.props.todoclicked}/>
             ))
         )
     }

@@ -17,13 +17,27 @@ class App extends React.Component {
   }
   addTodo(){
     console.log("added");
-    this.setState({todos: [...this.state.todos, {task: this.state.newEntry, id: Date.now(), completed: false}]})
+    this.setState({todos: [...this.state.todos, {task: this.state.newEntry, id: Date.now(), completed: false}]});
+    this.setState({newEntry: ''});
+  }
+  todoClicked(id){
+    console.log(id);
+    let copy = this.state.todos;
+    copy.map((todo) => {
+      if(todo.id != id) return todo;
+      else{
+        console.log(!todo.completed);
+        todo.completed = !todo.completed;
+        return todo;
+      }
+    })
+    this.setState({todos: copy});
   }
   render() {
     return (
       <div>
         <TodoForm add={this.addTodo.bind(this)} type={this.onType.bind(this)} newEntry={this.state.newEntry}/>
-        <TodoList todos={this.state.todos}/>
+        <TodoList todos={this.state.todos} todoclicked={this.todoClicked.bind(this)}/>
       </div>
     );
   }

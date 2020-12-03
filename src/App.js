@@ -1,5 +1,6 @@
 import React from 'react';
-import TodoList from './components/TodoList'
+import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm'
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -7,12 +8,21 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos:[]
+      todos:[],
+      newEntry:''
     };
+  }
+  onType = (e) =>{
+    console.log(e.target.value);
+    this.setState({newEntry : e.target.value});
+  }
+  addTodo(){
+    console.log("added");
   }
   render() {
     return (
       <div>
+        <TodoForm add={this.addTodo} type={this.onType}/>
         <TodoList todos={this.state.todos}/>
       </div>
     );
